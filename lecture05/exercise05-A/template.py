@@ -19,7 +19,7 @@ def main():
     for line in sys.stdin:
         line   = line.rstrip()
         result = 'Yes' if is_pbbmatched(line) else 'No'
-        print('{:>10}: {}'.format(line, result))
+        print(f'{line:>10}: {result}')
 
 if __name__ == '__main__':
     main()
