@@ -13,6 +13,11 @@ def count_colors(colors):
     
     >>> count_colors([0, 1, 2, 0, 1, 1])
     [2, 3, 1]
+    
+    >>> count_colors([0, 1, 2, 0, 1, 4])
+    Traceback (most recent call last):
+    ...
+    IndexError: list index out of range
     '''
     counts = [0, 0, 0]
 
