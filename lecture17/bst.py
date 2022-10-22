@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 
+from dataclasses import dataclass
 import sys
 
 # Classes
 
+'''
 class Node(object):
     def __init__(self, value, left=None, right=None):
         self.value = value
@@ -12,8 +14,15 @@ class Node(object):
 
     def __str__(self):
         return f'Node({self.value},{self.left},{self.right})'
+'''
 
-class Tree(object):
+@dataclass
+class Node:
+    value:  int
+    left:   'Node' = None
+    right:  'Node' = None
+
+class Tree:
     def __init__(self):
         self.root = None
 
