@@ -27,9 +27,9 @@ class Tree:
         self.root = None
 
     def search(self, value):                # Discuss: Search
-        return self.search_r(self.root, value)
+        return self._search(self.root, value)
 
-    def search_r(self, node, value):        # Discuss: Recursive helper
+    def _search(self, node, value):        # Discuss: Recursive helper
         if node is None:
             return False
 
@@ -37,43 +37,43 @@ class Tree:
             return True
 
         if value <= node.value:
-            return self.search_r(node.left, value)
+            return self._search(node.left, value)
         else:
-            return self.search_r(node.right, value)
+            return self._search(node.right, value)
 
     def insert(self, value):                # Discuss: Insertion
-        self.root = self.insert_r(self.root, value)
+        self.root = self._insert(self.root, value)
 
-    def insert_r(self, node, value):
+    def _insert(self, node, value):
         if node is None:
             return Node(value)
 
         if value <= node.value:
-            node.left  = self.insert_r(node.left, value)
+            node.left  = self._insert(node.left, value)
         else:
-            node.right = self.insert_r(node.right, value)
+            node.right = self._insert(node.right, value)
 
         return node
 
     def print(self):                        # Discuss: Traversal
-        self.print_r(self.root)
+        self._print(self.root)
 
-    def print_r(self, node):                # Discuss: In-Order Traversal
+    def _print(self, node):                # Discuss: In-Order Traversal
         if not node:
             return
 
-        self.print_r(node.left)
+        self._print(node.left)
         print(node.value)
-        self.print_r(node.right)
+        self._print(node.right)
 
     def nodes(self):                        # Review: Generators
-        yield from self.nodes_r(self.root)
+        yield from self._nodes(self.root)
 
-    def nodes_r(self, node):
+    def _nodes(self, node):
         if node:
-            yield from self.nodes_r(node.left)
+            yield from self._nodes(node.left)
             yield node.value
-            yield from self.nodes_r(node.right)
+            yield from self._nodes(node.right)
 
 # Main Execution
 
