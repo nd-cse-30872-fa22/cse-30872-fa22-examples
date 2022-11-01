@@ -14,8 +14,7 @@ RED  = 1
 
 def read_graph(n, m):
     ''' Construct adjacency list '''
-    g = {v: [] for v in range(n)}
-    #g = collections.defaultdict(list)
+    g = collections.defaultdict(list)
 
     for _ in range(m):
         s, t = map(int, sys.stdin.readline().split())
@@ -39,13 +38,11 @@ def walk(g, n, color, visited):
     if n in visited:
         return visited[n] == color
 
-    # We have not visited this node yet, so store its color.
-    visited[n] = color
-
     # Visit each neighbor recursively with the alternate color and check that
     # they are colorable.
     for v in g[n]:
-        if not walk(g, v, (color + 1) % 2, visited):
+        # Make sure we store the color when we recurse.
+        if not walk(g, v, (color + 1) % 2, visited + [color]):
             return False
 
     return True
