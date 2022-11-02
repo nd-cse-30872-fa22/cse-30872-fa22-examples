@@ -42,12 +42,12 @@ def walk(g, n, color, visited):
     # they are colorable.
     for v in g[n]:
         # Make sure we store the color when we recurse.
-        if not walk(g, v, (color + 1) % 2, visited + [color]):
+        if not walk(g, v, (color + 1) % 2, visited | {n: color}):
             return False
 
     return True
 
-def walk(g, n, color, visited):
+def walk1(g, n, color, visited):
     ''' Iteratively walk graph and verifying that the node has the appropriate
     color. '''
     # Establish frontier with initial node and color
