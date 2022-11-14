@@ -49,6 +49,28 @@ def find_circuit(graph, start, vertex, visited, path):
     # No circuit found, so return nothing
     return []
 
+def find_circuit(graph, start, vertex, visited, path):
+    ''' Recursive DFS traversal '''
+    # If we have returned to start, return path
+    if path and start == vertex:
+        return path
+
+    # Visit each unvisited outgoing edge
+    for neighbor in graph[vertex]:
+        if graph[vertex][neighbor] in visited:
+            continue
+
+        # Recursive
+        new_visited = visited | {graph[vertex][neighbor]}
+        new_path    = path + [(vertex, neighbor)]
+        sub_circuit = find_circuit(graph, start, neighbor, new_visited, new_path)
+        if sub_circuit:
+            visited |= new_visited
+            return sub_circuit
+
+    # No circuit found, so return nothing
+    return []
+
 # Find Eulerian Circuit
 
 def find_euler_circuit(graph):
